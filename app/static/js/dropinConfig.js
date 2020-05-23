@@ -12,7 +12,7 @@ const completePayment = (resultCode) => {
       window.location.href = "http://localhost:8080/error";
 
   } else {
-      window.location.href = "http://localhost:8080/failed";
+      window.location.href = "http://localhost:8080/failure";
   }
 };
 
@@ -88,3 +88,30 @@ const configuration = {
 
 const checkout = new AdyenCheckout(configuration);
 const dropin = checkout.create('dropin').mount('#dropin-container');
+
+
+
+
+function onComplete(fingerprintData) {
+  fingerprintResult = fingerprintData.data.details["threeds2.fingerprint"];
+}
+
+function onComplete(challengeData) {
+  challengeResult = challengeData.data.details["threeds2.challengeResult"];
+}
+
+const threeDS2IdentifyShopper = checkout
+        .create('threeDS2DeviceFingerprint', {
+            fingerprintToken: resultObject.authentication['threeds2.fingerprintToken'],
+            onComplete: function() {}, // Called whenever a result is available, regardless if the outcome is successful or not.
+            onError: function() {} // Gets triggered on error.
+        })
+        .mount('#threeDS2');
+const threeDS2Challenge = checkout
+        .create('threeDS2Challenge', {
+            challengeToken: resultObject.authentication['threeds2.challengeToken'],
+            onComplete: function() {}, // Called whenever a result is available, regardless if the outcome is successful or not.
+            onError: function() {}, // Gets triggered on error.
+            size: '05' // Defaults to '01'
+        })
+        .mount('#threeDS2');
