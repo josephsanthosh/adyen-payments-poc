@@ -22,7 +22,7 @@ I had to do this as sending the encrypted fields was getting an error response a
 	"errorType":"validation"
 }
 ```
-I did raise an Adyen support ticket(#1348839), but it took too long for them to respond. So i took it upon myself to atleast run a base minimum.
+I did raise an Adyen support ticket(#1348839), but it took too long for them to respond. So i took it upon myself to atleast run a bare minimum.
 * countryCode for all calls are 'NL', to keep it simple.
 * As requested, I have not used any existing adyen libraries, but direct API calls. 
 * I have used some adyen HTML templates(success, failure, layout, fetchPayments, css files) after discovering them on github, so as to reuse and reduce work on the front end. Only dropin file has been created from scratch.
