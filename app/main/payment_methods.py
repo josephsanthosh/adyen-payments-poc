@@ -1,5 +1,4 @@
 import app.config.config as conf
-from time import sleep
 import requests
 
 def get_payment_methods():
@@ -9,10 +8,9 @@ def get_payment_methods():
 
     request_payload = {}
     request_payload["merchantAccount"] = conf.merchant_account
-    request_payload["countryCode"] = 'NL'
+    request_payload["countryCode"] = 'NL' #hardcoded to retrieve only payment methods from Netherlands
     request_payload["shopperLocale"] = 'nl-NL'
-    print("/paymentMethods request:\n" + str(request_payload))
-    make_request = requests.post(url=url, headers=headers, json=request_payload)
-    response_object = make_request.text
-    print("/paymentMethods response:\n" + response_object)
-    return response_object
+    
+    response_object = requests.post(url=url, headers=headers, json=request_payload)
+
+    return response_object.text

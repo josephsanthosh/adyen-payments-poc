@@ -3,7 +3,7 @@
 {% block content %}
 
     <h2 class="title-status">Working on it!</h2>
-
+<!--  using fetchPaymentData script from Adyen github to generate json payload for /payments/details call   -->
     <script>
 
         const structurePaymentRequest = () => {
@@ -19,7 +19,7 @@
         fetch(`/shopperRedirect`, {
             method: 'POST',
             headers: {
-                Accept: 'application/json, text/plain, */*',
+                Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(structurePaymentRequest())
